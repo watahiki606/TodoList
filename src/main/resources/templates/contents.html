@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<!-- Btootstrap -->
+<link th:href="@{webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+<div th:fragment="contents">
+<div class='page-header'>
+<h1>TODO新規作成</h1>
+<form method="post" action="regist" th:object="${registForm}">
+<table class="table table-hover">
+<tr>
+<td>
+<div class="form-group"><input type="text" class="form-control" th:field="*{todoTitle}"/></div>
+</td>
+<td>
+<div class="form-group"><input type="text" class="form-control" th:field="*{todoDetail}" /></div>
+</td>
+<td><button class="btn btn-primary" type="submit">登録</button></td>
+</tr>
+</table>
+
+</form>
+</div>
+</div>
+</body>
+</html>

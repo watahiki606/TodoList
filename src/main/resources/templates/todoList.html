@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+
+<!-- Btootstrap -->
+<link th:href="@{webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
+<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+<!-- CSS読み込み -->
+<link th:href="@{css/todoList.css}" rel="stylesheet"></link>
+
+<title>TODOリスト</title>
+</head>
+<body>
+<!-- ヘッダー -->
+<nav class="navbar navbar-inverse navvar-fixed-top">
+<div class="container-fluid">
+<div class="navbar-header">
+<a class="navbar-brand" href="#">Sample</a>
+</div>
+</div>
+</nav>
+
+<!-- TODOリスト -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-10 col-sm-offset-2 main"></div>
+<div th:include="__${contents}__"></div>
+</div>
+</div>
+<h1>Todoリスト</h1>
+    <ul class="list-inline-flex"  >
+    <li class="list-group-item" th:each="todoList: ${todoLists}" >
+    <div style="display:inline-flex">
+    <form class="form-inline" method="post" th:action="@{/edit}" th:object=${registForm}>
+    <button class="btn btn-danger" type="submit" name="delete">完了</button>
+    <input type="hidden" class="form-control" name="todoId" th:value="${todoList.todo_id}"/>
+    <input type="text" class="form-control" name="todoTitle" th:value="${todoList.todo_title}"/>
+    <input type="text" class="form-control" name="todoDetail" th:value="${todoList.todo_detail}"/>
+    <button class="btn btn-primary" type="submit" name="update">更新</button>
+    </form>
+    </div>
+    </li>
+    </ul>
+</body>
+</html>
