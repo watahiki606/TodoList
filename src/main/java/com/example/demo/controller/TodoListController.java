@@ -20,7 +20,7 @@ public class TodoListController {
     @Autowired
     private TodoListService todoListService;
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String getHome(@ModelAttribute RegistForm form, Model model) {
         model.addAttribute("contents", "contents::contents");
         List<TodoList> todoLists = todoListService.selectMany();
@@ -53,9 +53,8 @@ public class TodoListController {
             System.out.println("insert失敗");
         }
         model.addAttribute("contents", "contents::contents");
-        getHome(form, model);
 
-        return "todoList";
+        return "redirect:/";
     }
 
     @PostMapping(value = "/edit", params = "update")
@@ -76,7 +75,7 @@ public class TodoListController {
             System.out.println("更新失敗");
         }
 
-        return getHome(form, model);
+        return "redirect:/";
 
     }
 
@@ -98,7 +97,7 @@ public class TodoListController {
             System.out.println("削除失敗");
         }
 
-        return getHome(form, model);
+        return "redirect:/";
 
     }
 }
